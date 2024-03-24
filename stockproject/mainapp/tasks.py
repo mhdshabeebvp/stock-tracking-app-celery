@@ -1,10 +1,11 @@
 from celery import shared_task
-from yahoo_fin.stock_info import *
+from yahoo_fin.stock_info import tickers_nifty50, get_quote_table
 from threading import Thread
 import queue
 from channels.layers import get_channel_layer
 import asyncio
 import simplejson as json
+
 
 @shared_task(bind=True)
 def update_stock(self, stockpicker):

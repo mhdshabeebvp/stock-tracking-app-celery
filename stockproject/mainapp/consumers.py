@@ -2,7 +2,7 @@ import json
 from mainapp.models import StockDetail
 from channels.generic.websocket import AsyncWebsocketConsumer
 from urllib.parse import parse_qs
-from asgiref.sync import sync_to_async, async_to_sync
+from asgiref.sync import sync_to_async
 from django_celery_beat.models import PeriodicTask, IntervalSchedule
 import copy
 class StockConsumer(AsyncWebsocketConsumer):
