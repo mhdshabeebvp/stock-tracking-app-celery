@@ -1,5 +1,5 @@
 from celery import shared_task
-from yahoo_fin.stock_info import tickers_nifty50, get_quote_table
+from yahoo_fin.stock_info import tickers_nasdaq, get_quote_table
 from threading import Thread
 import queue
 from channels.layers import get_channel_layer
@@ -10,7 +10,7 @@ import simplejson as json
 @shared_task(bind=True)
 def update_stock(self, stockpicker):
     data = {}
-    available_stocks = tickers_nifty50()
+    available_stocks = tickers_nasdaq()
     for i in stockpicker:
         if i in available_stocks:
             pass

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from yahoo_fin.stock_info import get_quote_table, tickers_nifty50
+from yahoo_fin.stock_info import get_quote_table, tickers_nasdaq
 from django.http.response import HttpResponse
 import time
 import queue
@@ -9,7 +9,7 @@ from asgiref.sync import sync_to_async
 
 # Create your views here.
 def stockPicker(request):
-    stock_picker = tickers_nifty50()
+    stock_picker = tickers_nasdaq()
     print(stock_picker)
     return render(request, "mainapp/stockpicker.html", {"stockpicker": stock_picker})
 
@@ -31,7 +31,7 @@ async def stockTracker(request):
 
     print(stockpicker)
     data = {}
-    available_stocks = tickers_nifty50()
+    available_stocks = tickers_nasdaq()
     for i in stockpicker:
         if i not in available_stocks:
             return HttpResponse("error")
